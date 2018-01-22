@@ -5,17 +5,15 @@ import Movie from '../presentation-components/Movie'
 
 class RandomMovieList extends Component {
      
-    componentDidUpdate(prevProps) {
-        let {randomMovies, specifiedRank, MoviesFetchImgData} = this.props; 
-        
-        if (prevProps.specifiedRank !== specifiedRank) {
-            randomMovies.map(movie => MoviesFetchImgData(movie.tconst));
-        }
-        
-    }
-  
-    
-    
+  componentDidUpdate(prevProps) {
+      let {randomMovies, specifiedRank, MoviesFetchImgData} = this.props; 
+      
+      if (prevProps.specifiedRank !== specifiedRank) {
+          randomMovies.forEach(movie => MoviesFetchImgData(movie.tconst));
+      }
+      
+  }
+   
   render() {
     
     let {randomMovies, specifiedRank, EvaluateGuessedRank, EvaluateRandomMovies, EvaluateSpecifiedRank, CorrectGuess, UpdateScore} = this.props;
@@ -53,12 +51,12 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    EvaluateGuessedRank: evaluateGuessedRank,
-    UpdateScore: updateScore,
-    CorrectGuess: correctGuess,
-    EvaluateSpecifiedRank: evaluateSpecifiedRank,
-    EvaluateRandomMovies: evaluateRandomMovies,
-    MoviesFetchImgData: movieFetchImgData
+  EvaluateGuessedRank: evaluateGuessedRank,
+  UpdateScore: updateScore,
+  CorrectGuess: correctGuess,
+  EvaluateSpecifiedRank: evaluateSpecifiedRank,
+  EvaluateRandomMovies: evaluateRandomMovies,
+  MoviesFetchImgData: movieFetchImgData
 }
 
 RandomMovieList = connect(

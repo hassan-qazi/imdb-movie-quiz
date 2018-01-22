@@ -1,4 +1,3 @@
-import '../App.css';
 import React from 'react';
 import SpecifyRank from '../container-components/SpecifyRank'
 import RandomMovieList from '../container-components/RandomMovieList'

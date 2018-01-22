@@ -4,7 +4,6 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux'
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
 import App from './presentation-components/App'
 import movieQuizAppReducer from './reducers'
 import {loadState} from './localStorage'
@@ -26,7 +25,6 @@ render(
 </Provider>,
 document.getElementById('root')
 );
-registerServiceWorker();
 
 
 

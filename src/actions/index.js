@@ -1,4 +1,5 @@
 import { csvParse } from 'd3-dsv'
+import { reqPath, imgUrl} from '../helpers'
 
 export const specifyRank = (rank) => ({
   type: 'SPECIFY_RANK',
@@ -82,6 +83,21 @@ export function movieReqRunning(bool) {
   };
 }
 
+export function movieImgReqError(bool) {
+  return {
+      type: 'MOVIE_IMG_REQ_ERROR',
+      hasErrored: bool
+  };
+}
+
+
+export function movieImgReqRunning(bool) {
+  return {
+      type: 'MOVIE_IMG_REQ_RUNNING',
+      reqRunning: bool
+  };
+}
+
 export function setMovieImgUrl(tconst, imgUrl) {
   return {
       type: 'MOVIE_IMG_URL_SET',
@@ -90,30 +106,23 @@ export function setMovieImgUrl(tconst, imgUrl) {
   };
 }
 
-const reqPath = (tconst) => "https://api.themoviedb.org/3/find/" + tconst +
-    "?api_key=a85cc5d486c74e4d2d09a782fd34ef6f&language=en-US&external_source=imdb_id";
-
-const imgUrl = (poster_path) => "https://image.tmdb.org/t/p/w185" + poster_path;
-
 export function movieFetchImgData(tconst) {
   return (dispatch) => {
-      dispatch(movieReqRunning(true));
-      //console.log(url);
+      dispatch(movieImgReqRunning(true));
       fetch(reqPath(tconst))
           .then((response) => {
               if (!response.ok) {
                   throw Error(response.statusText);
               }
 
-              dispatch(movieReqRunning(false));
+              dispatch(movieImgReqRunning(false));
 
               return response;
           })
           .then((response) => response.json())
           .then((movie) => dispatch(setMovieImgUrl(tconst, imgUrl(movie.movie_results[0].poster_path))))
           .catch((err) => {
-            console.log(err);
-            dispatch(movieReqError(true))});
+            dispatch(movieImgReqError(true))});
   };
 }
 
@@ -124,12 +133,13 @@ export const loadMovies = (movies) => ({
 
 export function loadCsvData() {
   return (dispatch) => {
-    
+      dispatch(movieReqRunning(true));
       fetch("title.top100movies.csv")
           .then((response) => {
               if (!response.ok) {
                   throw Error(response.statusText);
               }
+              dispatch(movieReqRunning(false));
               return response;
           })
           .then((response) => response.text())
@@ -137,8 +147,7 @@ export function loadCsvData() {
             dispatch(loadMovies(csvParse(movies)));
           })
           .catch((err) => {
-            //console.log(err);
-            //dispatch(movieReqError(true))
+            dispatch(movieReqError(true))
           });
   };
 }

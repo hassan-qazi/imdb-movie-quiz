@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Movie Quiz",
+  "name": "IMDB Top 100 Movie Quiz",
   "icons": [
     {
       "src": "favicon.ico",

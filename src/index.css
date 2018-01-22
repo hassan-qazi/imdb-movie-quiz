@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+
 * {
   box-sizing: border-box;
  }
@@ -46,8 +47,8 @@ ul li {
 
 }
 
-@media only screen and (min-width: 600px) {
-  /* For tablets: */
+@media only screen and (min-width: 768px) {
+  /* For tablets & above: */
   ul li  {
     display: inline-block;
     vertical-align: top;
@@ -58,20 +59,7 @@ ul li {
   
 }
 
-@media only screen and (min-width: 768px) {
-  /* For desktop: */
-  /*
-  ul li  {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 1.5%;
-    width: 30%;
-    text-align: center;
-  }
-  */
-}
-
-ul li img {
+ul li img, ul li object {
   display: inline-block;
   height: 250px;
   width: 166px;

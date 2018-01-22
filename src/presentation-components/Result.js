@@ -19,7 +19,7 @@ let Result = ({correctGuess, guessedRank}) => {
     {
         return (<div className="result">
                     <span className="error" style={{
-                                                        backgroundColor: 'rgba(' + bRed + ',' + bGreen + ',' + bBlue + ', 1)'
+                                                    backgroundColor: 'rgba(' + bRed + ',' + bGreen + ',' + bBlue + ', 1)'
                                                     }}>
                     Wrong Answer - please try again</span>
                 </div>)

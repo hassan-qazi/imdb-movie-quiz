@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-//import { specifyRank, setRandomMovies, resetGuess, resetEvaluation} from '../actions'
 import { specifyRank, setRandomMovies, resetGuess, resetCorrectGuess} from '../actions'
 import { getRandomMovies} from '../helpers'
 

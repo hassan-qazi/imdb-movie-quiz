@@ -5,7 +5,7 @@ import randomMovies from './randomMovies'
 import guessedRank from './guessedRank'
 import correctGuess from './correctGuess'
 import score from './score'
-import { movieReqHasErrored, movieReqRunning } from './fetchImgData';
+import { movieReqHasErrored, movieReqRunning, movieImgReqHasErrored, movieImgReqRunning } from './fetchData';
 
 const movieQuizAppReducer = combineReducers({
   movies,
@@ -15,7 +15,9 @@ const movieQuizAppReducer = combineReducers({
   correctGuess,
   score,
   movieReqHasErrored, 
-  movieReqRunning 
+  movieReqRunning,
+  movieImgReqHasErrored, 
+  movieImgReqRunning 
   
 })
 

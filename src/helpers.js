@@ -1,3 +1,4 @@
+// This function is a copy of Mozilla's implementation
 export const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -50,4 +51,9 @@ export const getRandomMovies = (movies, specifiedRank) => {
                  
    return randomMovies;
 }
+
+export const reqPath = (tconst) => "https://api.themoviedb.org/3/find/" + tconst +
+    "?api_key=a85cc5d486c74e4d2d09a782fd34ef6f&language=en-US&external_source=imdb_id";
+
+export const imgUrl = (poster_path) => "https://image.tmdb.org/t/p/w185" + poster_path;
   
