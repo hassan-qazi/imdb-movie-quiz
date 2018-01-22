@@ -1,49 +1,70 @@
-import React from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { specifyRank, setRandomMovies, resetGuess, resetCorrectGuess} from '../actions'
 import { getRandomMovies} from '../helpers'
 
-let SpecifyRank = ({ movies, specifiedRank, dispatch }) => {
-  let input;
+class SpecifyRank extends Component {
+  
+  componentDidUpdate(prevProps){
+    let {specifiedRank} = this.props;
+    
+    if (prevProps.specifiedRank !== specifiedRank) {
+      this.input.focus(); 
+    }
+  }
 
+  handleSubmit = () => {
+    
+    let {movies, specifiedRank, dispatch} = this.props;
+    
+    if (!this.input.value.trim()) {
+      this.input.focus();
+      return
+    }
+    dispatch(resetGuess());  
 
-  return (
-    <div style={{
-            display: specifiedRank.toString() === "0" ? 'block' : 'none'
-          }}>
-      <form onSubmit={e => {
-                              e.preventDefault()
-                              if (!input.value.trim()) {
-                                return
+    dispatch(resetCorrectGuess());
+
+    dispatch(specifyRank(this.input.value));
+  
+    if(specifiedRank.toString() !== this.input.value)
+    {
+      dispatch(setRandomMovies(getRandomMovies(movies,this.input.value)));
+    }
+
+    this.input.value = ''
+
+  }
+
+  render() {
+    
+    let {specifiedRank} = this.props;
+    
+    return (
+      <div style={{
+              display: specifiedRank.toString() === "0" ? 'block' : 'none'
+            }}>
+        <form onSubmit={e => {
+                                e.preventDefault()
+                                this.handleSubmit()
                               }
-                              dispatch(resetGuess());  
-
-                              dispatch(resetCorrectGuess());
-
-                              dispatch(specifyRank(input.value));
-                            
-                              if(specifiedRank.toString() !== input.value)
-                              {
-                                dispatch(setRandomMovies(getRandomMovies(movies,input.value)));
-                              }
-
-                              input.value = ''
-                           }
-                      } >
-        <h2> IMDB Top 100 Movie Quiz </h2>
-        <h3>Enter in the movie ranking you want to guess...</h3>
-        <input type="number" min="1" max="100" placeholder="Rank" ref={node => {
-                                                          input = node
-                                                        }} />
-        <br/>
-        <button type="submit">
-          Start Quiz
-        </button>
-      
-      </form>
-    </div>
-  )
+                        } >
+          <h2> IMDB Top 100 Movie Quiz </h2>
+          <h3>Enter in the movie ranking you want to guess...</h3>
+          <input autoFocus type="number" min="1" max="100" placeholder="Rank" ref={node => {
+                                                            this.input = node;
+                                                          }} />
+          <br/>
+          <button type="submit">
+            Start Quiz
+          </button>
+        
+        </form>
+      </div>
+    )
+  }
 }
+
 const mapStateToProps = (state) => ({
   movies: state.movies,
   specifiedRank: state.specifiedRank
