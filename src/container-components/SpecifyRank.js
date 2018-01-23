@@ -9,7 +9,7 @@ class SpecifyRank extends Component {
     let {specifiedRank} = this.props;
     
     if (prevProps.specifiedRank !== specifiedRank) {
-      this.input.focus(); 
+      //this.input.focus(); 
     }
   }
 

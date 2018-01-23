@@ -1,40 +1,52 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { getRandomIntInclusive } from '../helpers'
+import { hideResult } from '../actions'
 
-let Result = ({correctGuess, guessedRank}) => {   
-   
-    let bRed = getRandomIntInclusive(150,255), 
-        bGreen = getRandomIntInclusive(0,70),
-        bBlue = bGreen;
-
-    if(guessedRank.toString() === "0" && correctGuess === 0)
-    {
-        return (<div className="result">
-                    <span></span>
-                </div>)
-    }
+class Result extends Component {
+     
+    componentWillUpdate(nextProps) {
         
-    if(correctGuess === 0)
-    {
-        return (<div className="result">
-                    <span className="error" style={{
-                                                    backgroundColor: 'rgba(' + bRed + ',' + bGreen + ',' + bBlue + ', 1)'
-                                                    }}>
-                    Wrong Answer - please try again</span>
-                </div>)
+        let {correctGuess, guessedRank, dispatch} = nextProps; 
+        
+        if(correctGuess === 0 && guessedRank.toString() !== "0")
+        {
+            setTimeout(() => dispatch(hideResult()), 750);
+        }
+
     }
-    else if (correctGuess === 1) {
-        return (<div className="result">
-                    <span className="success">You were correct - try another one now!</span>
-                </div>)
+
+    render() {
+
+        let {correctGuess, guessedRank, showResult} = this.props; 
+
+        //console.log(showResult);
+        
+        if((guessedRank.toString() === "0" && correctGuess === 0))
+        {
+            return (<div className="result">
+                        <span></span>
+                    </div>)
+        }
+            
+        if(correctGuess === 0)
+        {
+            return (<div className="result">
+                        <span className={showResult? "error": "error fadeOut"}>
+                        Wrong Answer - please try again</span>
+                    </div>)
+        }
+        else if (correctGuess === 1) {
+            return (<div className="result">
+                        <span className="success">You were correct - try another one now!</span>
+                    </div>)
+        }
     }
-    
 }
 
 const mapStateToProps = (state) => ({
       correctGuess: state.correctGuess,
-      guessedRank: state.guessedRank
+      guessedRank: state.guessedRank,
+      showResult: state.showResult
 })
   
 Result = connect(

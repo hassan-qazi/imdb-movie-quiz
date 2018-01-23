@@ -8,41 +8,18 @@ export const getRandomIntInclusive = (min, max) => {
 export const getRandomMovies = (movies, specifiedRank) => {
   
     let firstRandomRank, secondRandomRank;
-    
-    if (specifiedRank === 1)
-    {
-        firstRandomRank = getRandomIntInclusive(2,100);
-        secondRandomRank = getRandomIntInclusive(2,100);
-  
-        while (firstRandomRank === secondRandomRank) {
-            secondRandomRank = getRandomIntInclusive(2,100);
-        }
-  
-    }
-    else if (specifiedRank === 100)
-    {
-        firstRandomRank = getRandomIntInclusive(1,99);
-        secondRandomRank = getRandomIntInclusive(1,99);
-        
-        while (firstRandomRank === secondRandomRank) {
-            secondRandomRank = getRandomIntInclusive(1,99);
-        }
-    }
-    else
-    {
+
+    firstRandomRank = getRandomIntInclusive(1,100);
+    secondRandomRank = getRandomIntInclusive(1,100);
+
+    while (firstRandomRank.toString() === specifiedRank.toString() 
+        || secondRandomRank.toString() === specifiedRank.toString()
+        || firstRandomRank.toString() === secondRandomRank.toString()) {
+     
         firstRandomRank = getRandomIntInclusive(1,100);
         secondRandomRank = getRandomIntInclusive(1,100);
-        
-        while (firstRandomRank === specifiedRank 
-               || secondRandomRank === specifiedRank
-               || firstRandomRank === secondRandomRank) {
-            
-            firstRandomRank = getRandomIntInclusive(1,100);
-            secondRandomRank = getRandomIntInclusive(1,100);
-        }
-  
     }
-  
+
     let randomMovies = movies.filter(movie => movie.rank === firstRandomRank.toString() 
                                     || movie.rank === secondRandomRank.toString() 
                                     || movie.rank === specifiedRank.toString())

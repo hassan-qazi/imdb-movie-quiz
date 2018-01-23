@@ -55,6 +55,20 @@ export const decrementScore = () => ({
 })
 */
 
+export const evaluateResult = (guessedRank, specifiedRank) => ({
+  type: 'EVALUATE_RESULT',
+  guessedRank,
+  specifiedRank
+})
+
+export const showResult = () => ({
+  type: 'SHOW_RESULT'
+})
+
+export const hideResult = () => ({
+  type: 'HIDE_RESULT'
+})
+
 export const resetScore = () => ({
   type: 'RESET_SCORE'
 })

@@ -7,10 +7,10 @@ const Movie = ({ onClick, primaryTitle, imgUrl}) => (
          onClick()
        }}>
        
-      <img src={imgUrl} alt="Movie" />
+      <img src={imgUrl} alt="Movie Poster N/A" />
       <br/>
       <span>{primaryTitle}</span>
-      
+
     </a>
   </li>
 )

@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { evaluateGuessedRank, updateScore, evaluateSpecifiedRank, correctGuess, evaluateRandomMovies, movieFetchImgData } from '../actions'
+import { evaluateGuessedRank, 
+         updateScore, 
+         evaluateSpecifiedRank, 
+         correctGuess, 
+         evaluateRandomMovies, 
+         movieFetchImgData,
+         showResult 
+        } from '../actions'
 import Movie from '../presentation-components/Movie'
 
 class RandomMovieList extends Component {
@@ -16,7 +23,10 @@ class RandomMovieList extends Component {
    
   render() {
     
-    let {randomMovies, specifiedRank, EvaluateGuessedRank, EvaluateRandomMovies, EvaluateSpecifiedRank, CorrectGuess, UpdateScore} = this.props;
+    let {randomMovies, specifiedRank, //score, 
+         EvaluateGuessedRank, EvaluateRandomMovies, 
+         EvaluateSpecifiedRank, CorrectGuess, UpdateScore, ShowResult
+        } = this.props;
     
     return(
       <div style={{
@@ -36,6 +46,21 @@ class RandomMovieList extends Component {
               EvaluateRandomMovies(movie.rank, specifiedRank)
               EvaluateGuessedRank(movie.rank, specifiedRank)
               EvaluateSpecifiedRank(movie.rank, specifiedRank)
+              ShowResult()
+
+              /* Quick Hack to show alerts...should use Redux store to manage alerts as well */
+              /*
+              if(movie.rank.toString() !== specifiedRank.toString())
+              {
+                score--;
+                alert("Wrong Answer!\n\nYour Score is now: " + score)
+              }
+              else
+              {
+                score++;
+                alert("Right Answer!\n\nYour Score is now: " + score)
+              }
+              */
             }}
             />
           )}
@@ -48,6 +73,7 @@ class RandomMovieList extends Component {
 const mapStateToProps = (state) => ({
   randomMovies: state.randomMovies,
   specifiedRank: state.specifiedRank
+  //score: state.score
 })
 
 const mapDispatchToProps = {
@@ -56,7 +82,8 @@ const mapDispatchToProps = {
   CorrectGuess: correctGuess,
   EvaluateSpecifiedRank: evaluateSpecifiedRank,
   EvaluateRandomMovies: evaluateRandomMovies,
-  MoviesFetchImgData: movieFetchImgData
+  MoviesFetchImgData: movieFetchImgData,
+  ShowResult: showResult
 }
 
 RandomMovieList = connect(

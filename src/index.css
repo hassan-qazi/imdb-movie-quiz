@@ -47,7 +47,7 @@ ul li {
 
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 600px) {
   /* For tablets & above: */
   ul li  {
     display: inline-block;
@@ -124,7 +124,10 @@ input[type=number]:hover{
   clear: both;
   text-align: center;
   margin: 2em 0;
+  
 }
+
+
 
 .success {
   display: inline-block;
@@ -140,6 +143,7 @@ input[type=number]:hover{
 
 .error {
   display: inline-block;
+  background-color: #c9302c;
   border: 1px solid #f5c6cb;
   color: #fff;
   width: 80%;
@@ -147,6 +151,14 @@ input[type=number]:hover{
   padding: 0.5em;
   border-radius: 10px;
   font-size: 16px;
+  opacity: 1;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+.fadeOut {
+  opacity: 0;
 }
 
 .score {
