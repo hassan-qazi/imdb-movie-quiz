@@ -31,7 +31,7 @@ class Result extends Component {
         if(correctGuess === 0)
         {
             return (<div className="result">
-                        <span className={showResult? "error": "error fadeOut"}>
+                        <span className={showResult ? "error": "error fadeOut"}>
                         Wrong Answer - please try again</span>
                     </div>)
         }

@@ -47,20 +47,6 @@ class RandomMovieList extends Component {
               EvaluateGuessedRank(movie.rank, specifiedRank)
               EvaluateSpecifiedRank(movie.rank, specifiedRank)
               ShowResult()
-
-              /* Quick Hack to show alerts...should use Redux store to manage alerts as well */
-              /*
-              if(movie.rank.toString() !== specifiedRank.toString())
-              {
-                score--;
-                alert("Wrong Answer!\n\nYour Score is now: " + score)
-              }
-              else
-              {
-                score++;
-                alert("Right Answer!\n\nYour Score is now: " + score)
-              }
-              */
             }}
             />
           )}
