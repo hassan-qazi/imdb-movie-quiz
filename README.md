@@ -10,3 +10,6 @@ This is a demo React App using Redux state management
 * Redux state management techniques are employed for synchronous operations
 * React utilized to render the DOM
 
+## Link to App
+
+* https://hassan-qazi.github.io/imdb-movie-quiz
