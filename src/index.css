@@ -162,9 +162,13 @@ input[type=number]:hover{
 }
 
 .score {
-  width: 80%;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: white;
+  border-radius: 10px;
+  padding: 5px 10px;
   margin: 0 auto;
-  text-align: right;
   color: #004085;
   font-size: 16px;
 }
