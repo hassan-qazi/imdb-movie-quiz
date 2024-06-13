@@ -121,6 +121,9 @@ input[type=number]:hover{
 }
 
 .result {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
   clear: both;
   text-align: center;
   margin: 2em 0;
